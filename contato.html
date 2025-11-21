@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato - Brindaria</title>
     
+    <!-- SEO: Metadescrição (Adicionada) -->
+    <meta name="description" content="Fale com a Brindaria. Entre em contato via WhatsApp para dúvidas, sugestões ou encomendas de arte sacra personalizada. Atendimento familiar e acolhedor.">
+    
     <!-- OTIMIZAÇÃO DE PERFORMANCE -->
-    <!-- 1. Preconectar para acelerar download de fontes e scripts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     
-    <!-- 2. Carregar Fonte em Paralelo -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- 3. Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="icon" href="assets/images/ICONE.jpeg">
 
-    <!-- 4. CSS Crítico Inline (Elimina requisição extra) -->
+    <!-- CSS Crítico Inline -->
     <style>
+        /* Configuração Base */
         body { 
             font-family: 'Inter', sans-serif; 
             scroll-behavior: smooth; 
         }
+        /* Estilo da Marca */
         .brand-wordmark { 
             font-family: 'Inter', sans-serif; 
             font-weight: 500; 
@@ -57,7 +58,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <!-- Menu Flutuante -->
                     <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white border border-gray-100 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
                         <a href="/pecas/espiritual/sao-luis-de-montfort" class="block px-4 py-3 text-left hover:bg-cyan-50 text-gray-700 hover:text-cyan-700 transition">São Luís de Montfort</a>
                         <a href="/pecas/espiritual/anjo-da-guarda" class="block px-4 py-3 text-left hover:bg-cyan-50 text-gray-700 hover:text-cyan-700 transition border-t border-gray-50">Santo Anjo da Guarda</a>
