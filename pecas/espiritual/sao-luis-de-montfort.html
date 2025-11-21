@@ -19,16 +19,108 @@
     <!-- Wrapper Principal -->
     <div class="max-w-4xl mx-auto px-6 py-12 md:py-16">
 
-        <!-- HEADER -->
-        <header class="text-center mb-12">
-            <a href="/" class="brand-wordmark text-2xl text-black lowercase hover:text-gray-700 transition">
+        <!-- HEADER COM NAVEGAÇÃO -->
+        <header class="text-center mb-10">
+            <!-- Logo -->
+            <a href="/" class="brand-wordmark text-3xl text-black lowercase hover:text-gray-700 transition block mb-6">
                 brindaria.com.br
             </a>
+            
+            <!-- Menu de Navegação (Novo) -->
+            <nav class="flex justify-center gap-8 text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                <a href="/" class="hover:text-cyan-600 transition border-b-2 border-transparent hover:border-cyan-600 pb-1">Início</a>
+                <a href="/contato" class="hover:text-cyan-600 transition border-b-2 border-transparent hover:border-cyan-600 pb-1">Contato</a>
+            </nav>
         </header>
 
-        <!-- CONTEÚDO DO PRODUTO -->
+        <!-- SEÇÃO DE AUTENTICIDADE (Movel para o Topo) -->
+        <section id="lookup-section" class="bg-white p-8 rounded-lg shadow-md border border-gray-100 mb-10 relative overflow-hidden">
+            <!-- Faixa decorativa no topo para destaque -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 to-indigo-500"></div>
+
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Consultar Autenticidade</h2>
+                <p class="text-gray-600 text-sm md:text-base">
+                    Possui esta peça? Digite o código gravado na base para validar sua origem e ver a mensagem dedicada.
+                </p>
+            </div>
+
+            <!-- Campo de Busca -->
+            <div class="max-w-md mx-auto">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="text" 
+                           id="serial-code" 
+                           placeholder="Ex: #001" 
+                           class="flex-grow w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 uppercase tracking-widest font-medium text-center sm:text-left">
+                    
+                    <button id="lookup-button" 
+                            class="inline-flex items-center justify-center bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-lg py-3 px-6 rounded-lg shadow-md transition-all transform hover:scale-105 duration-200">
+                        Validar
+                    </button>
+                </div>
+                <div id="lookup-message" class="text-center mt-4 text-lg font-medium"></div>
+            </div>
+
+            <!-- Área de Resultado (Oculta até a busca) -->
+            <div id="certificate-details" class="mt-8 hidden animate-fade-in">
+                
+                <!-- Status de Validação -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 flex flex-col md:flex-row items-center justify-center gap-3 mb-8 text-center md:text-left">
+                    <div class="bg-green-500 rounded-full p-1 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-green-900 font-bold text-lg leading-tight">
+                            CÓDIGO <span id="cert-codigo-display"></span> - Autenticidade Validada
+                        </div>
+                        <span class="text-sm font-normal text-green-800">Peça original Brindaria.</span>
+                    </div>
+                </div>
+
+                <!-- Ficha Técnica -->
+                <div class="grid grid-cols-1 gap-6">
+                    
+                    <!-- Detalhes Técnicos -->
+                    <div class="border-l-4 border-gray-300 pl-4 py-1 space-y-2 text-sm md:text-base">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Ficha Técnica</h3>
+                        
+                        <p class="text-gray-800">
+                            <strong class="font-semibold">Modelo:</strong> <span id="cert-modelo"></span>
+                            <br><span id="cert-colecao" class="text-gray-500 italic"></span>
+                        </p>
+                        <p class="text-gray-800">
+                            <strong class="font-semibold">Material:</strong> <span id="cert-material"></span>
+                        </p>
+                        <p class="text-gray-800">
+                            <strong class="font-semibold">Acabamento:</strong> <span id="cert-acabamento"></span>
+                        </p>
+                        <p class="text-gray-800">
+                            <strong class="font-semibold">Data:</strong> <span id="cert-data"></span>
+                        </p>
+                    </div>
+
+                    <!-- Mensagem Personalizada -->
+                    <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-100 mt-2 relative">
+                        <!-- Ícone de aspas decorativo -->
+                        <span class="absolute top-4 left-4 text-4xl text-indigo-200 font-serif leading-none opacity-50">“</span>
+                        <p id="cert-mensagem" class="text-lg text-indigo-900 leading-relaxed italic relative z-10 px-2"></p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTEÚDO DO PRODUTO (Agora vem depois) -->
         <section class="bg-white p-8 rounded-lg shadow-md">
-                       
+            
+            <div class="flex justify-between items-center mb-4">
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                    / pecas / espiritual
+                </p>
+            </div>
+            
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                 São Luís Maria Grignion de Montfort
             </h1>
@@ -40,22 +132,22 @@
             <div class="mb-8 rounded-lg overflow-hidden shadow-sm">
                 <img src="/assets/images/SAO_LUIS_MARIA_GRIGNION_DE_MONTFORT.jpg" 
                      alt="Estatueta de São Luís Maria Grignion de Montfort - Brindaria" 
-                     class="w-full h-auto object-cover"
+                     class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
                      loading="lazy">
             </div>
             
             <!-- Ficha Técnica do Santo -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 bg-indigo-50 p-6 rounded-lg border border-indigo-100">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 bg-gray-50 p-6 rounded-lg border border-gray-100">
                 <div>
-                    <h3 class="font-bold text-indigo-900 text-sm uppercase mb-1">Conhecido como</h3>
-                    <p class="text-gray-800">O Guerreiro da Virgem e Apóstolo dos Últimos Tempos</p>
+                    <h3 class="font-bold text-indigo-900 text-xs uppercase mb-1 tracking-wide">Conhecido como</h3>
+                    <p class="text-gray-800 font-medium">O Guerreiro da Virgem e Apóstolo dos Últimos Tempos</p>
                 </div>
                 <div>
-                    <h3 class="font-bold text-indigo-900 text-sm uppercase mb-1">Celebrado em</h3>
-                    <p class="text-gray-800">28 de Abril</p>
+                    <h3 class="font-bold text-indigo-900 text-xs uppercase mb-1 tracking-wide">Celebrado em</h3>
+                    <p class="text-gray-800 font-medium">28 de Abril</p>
                 </div>
                 <div>
-                    <h3 class="font-bold text-indigo-900 text-sm uppercase mb-1">Invocado para</h3>
+                    <h3 class="font-bold text-indigo-900 text-xs uppercase mb-1 tracking-wide">Invocado para</h3>
                     <p class="text-gray-800 text-sm">A Consagração Total a Maria (Totus Tuus), renovação das promessas do Batismo, proteção contra ciladas espirituais e para obter a Sabedoria Divina.</p>
                 </div>
             </div>
@@ -65,27 +157,36 @@
                 
                 <!-- Como Identificar -->
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Como identificar</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-1 h-8 bg-cyan-500 rounded-full inline-block"></span>
+                        Como identificar
+                    </h2>
                     <p class="mb-4">
                         A imagem de São Luís é rica e varia conforme a faceta da sua missão que se deseja exaltar, embora mantenha sempre a batina sacerdotal desgastada (sinal de pobreza) e o grande Rosário de 15 dezenas à cintura.
                     </p>
-                    <p class="mb-2">Existem três representações clássicas que você pode encontrar:</p>
-                    <ul class="list-disc list-outside ml-6 space-y-2 marker:text-indigo-500">
-                        <li>
-                            <strong>O Missionário da Cruz:</strong> Representado abraçando um Crucifixo junto ao peito ou erguendo-o com vigor, simbolizando a sua pregação incansável sobre a "Sabedoria Crucificada".
+                    <p class="mb-2 font-medium text-gray-900">Existem três representações clássicas:</p>
+                    <ul class="space-y-4 mt-4">
+                        <li class="flex gap-3">
+                            <span class="text-cyan-500 font-bold">•</span>
+                            <span><strong>O Missionário da Cruz:</strong> Abraçando um Crucifixo junto ao peito ou erguendo-o com vigor, simbolizando a sua pregação incansável sobre a "Sabedoria Crucificada".</span>
                         </li>
-                        <li>
-                            <strong>O Profeta Mariano:</strong> Representado segurando o livro do "Tratado da Verdadeira Devoção", muitas vezes com um demônio aos pés tentando rasgar ou esconder a obra, em alusão à profecia do próprio santo de que o livro ficaria oculto.
+                        <li class="flex gap-3">
+                            <span class="text-cyan-500 font-bold">•</span>
+                            <span><strong>O Profeta Mariano:</strong> Segurando o livro do "Tratado da Verdadeira Devoção", muitas vezes com um demônio aos pés tentando rasgar a obra (alusão à profecia de que o livro ficaria oculto).</span>
                         </li>
-                        <li>
-                            <strong>O Escravo de Amor:</strong> Representado com correntes quebradas ou nos pulsos, simbolizando a sua total entrega e "santa escravidão" de amor a Jesus por Maria.
+                        <li class="flex gap-3">
+                            <span class="text-cyan-500 font-bold">•</span>
+                            <span><strong>O Escravo de Amor:</strong> Com correntes quebradas ou nos pulsos, simbolizando a sua total entrega e "santa escravidão" de amor a Jesus por Maria.</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- História e Curiosidades -->
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">História e Curiosidades <span class="text-base font-normal text-gray-500">(Curadoria Brindaria)</span></h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-1 h-8 bg-indigo-500 rounded-full inline-block"></span>
+                        História e Curiosidades <span class="text-sm font-normal text-gray-400 ml-2">(Curadoria Brindaria)</span>
+                    </h2>
                     <p class="mb-4">
                         Muito mais do que um escritor, Luís Maria foi um verdadeiro "Guerreiro Espiritual" (o significado original do seu nome franco <em>Hlōdowik</em>). Nascido na França em 1673, ele rompeu com o passado ao ponto de abandonar o sobrenome do pai (Grignion) para adotar o nome do seu batismo e da sua fortaleza espiritual: Montfort. A sua vida foi marcada por uma tenacidade impressionante: em 1706, caminhou 1.700 km a pé até Roma para pedir ao Papa uma direção para a sua vida.
                     </p>
@@ -98,108 +199,36 @@
                 </div>
 
                 <!-- Principais Locais -->
-                <div class="bg-gray-50 p-4 rounded-lg text-base border-l-4 border-gray-300">
+                <div class="bg-gray-50 p-5 rounded-lg text-base border-l-4 border-gray-300 italic">
                     <strong>Principais locais de devoção:</strong> Basílica de Saint-Laurent-sur-Sèvre (França), onde repousa o seu corpo, e a Basílica de São Pedro (Vaticano), onde uma estátua monumental o homenageia no nicho da nave central.
                 </div>
 
                 <!-- Oração -->
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Oração a São Luís de Montfort</h2>
-                    <div class="relative p-8 bg-indigo-50 rounded-xl text-center">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Oração a São Luís de Montfort</h2>
+                    <div class="relative p-8 md:p-10 bg-indigo-50 rounded-2xl text-center shadow-sm">
                         <!-- Aspas decorativas -->
-                        <span class="absolute top-4 left-4 text-6xl text-indigo-200 font-serif leading-none">“</span>
+                        <span class="absolute top-6 left-6 text-6xl text-indigo-200 font-serif leading-none opacity-50">“</span>
                         
-                        <p class="italic text-xl text-indigo-900 font-serif relative z-10">
+                        <p class="italic text-xl text-indigo-900 font-serif relative z-10 leading-relaxed">
                             Eu vos escolho hoje, ó Maria, na presença de toda a corte celeste, por minha Mãe e minha Rainha. Entrego-vos e consagro-vos, com toda a submissão e amor, o meu corpo e a minha alma, os meus bens interiores e exteriores, e até o valor das minhas boas obras passadas, presentes e futuras. Concedo-vos inteiro e pleno direito de dispor de mim e de tudo o que me pertence, sem exceção, segundo o vosso beneplácito, para a maior glória de Deus, no tempo e na eternidade. Amém.
                         </p>
-                        <p class="mt-4 text-sm font-bold text-indigo-400 uppercase tracking-widest">
-                            Totus Tuus ego sum, et omnia mea tua sunt
-                        </p>
+                        <div class="mt-6 inline-block border-t border-indigo-200 pt-4">
+                            <p class="text-sm font-bold text-indigo-400 uppercase tracking-widest">
+                                Totus Tuus ego sum, et omnia mea tua sunt
+                            </p>
+                        </div>
                         
-                        <span class="absolute bottom-0 right-4 text-6xl text-indigo-200 font-serif leading-none rotate-180">“</span>
+                        <span class="absolute bottom-2 right-6 text-6xl text-indigo-200 font-serif leading-none rotate-180 opacity-50">“</span>
                     </div>
                 </div>
 
                 <!-- Variações do Nome -->
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Variações do Nome no Brasil</h3>
-                    <p class="text-gray-600">
-                        Todas derivadas do original germânico antigo <em>Hlodwig</em> (Famoso Guerreiro): Luís, Luiz, Luis, Luíz, Luigi, Luiggi, Ludovico, Aluísio, Clóvis, Louis (dentre outros com grafia ou origem etimológica parecida).
+                <div class="text-sm text-gray-500 border-t border-gray-100 pt-6">
+                    <h3 class="font-bold text-gray-700 mb-1 inline">Variações do Nome no Brasil:</h3>
+                    <p class="inline">
+                        Todas derivadas do original germânico antigo <em>Hlodwig</em> (Famoso Guerreiro): Luís, Luiz, Luis, Luíz, Luigi, Luiggi, Ludovico, Aluísio, Clóvis, Louis.
                     </p>
-                </div>
-            </div>
-        </section>
-
-        <hr class="my-10 border-t border-gray-200">
-
-        <!-- SEÇÃO DE AUTENTICIDADE -->
-        <section id="lookup-section" class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Autenticidade</h2>
-                <p class="text-gray-600">
-                    Cada peça da Brindaria é única. Digite o código gravado na base da sua peça abaixo para descobrir detalhes exclusivos da sua criação.
-                </p>
-            </div>
-
-            <!-- Campo de Busca -->
-            <div class="max-w-md mx-auto">
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <input type="text" 
-                           id="serial-code" 
-                           placeholder="Digite o código (ex: 001 ou #001)" 
-                           class="flex-grow w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 uppercase">
-                    
-                    <button id="lookup-button" 
-                            class="inline-flex items-center justify-center bg-cyan-500 hover:bg-cyan-600 text-white font-bold text-lg py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out">
-                        Consultar
-                    </button>
-                </div>
-                <div id="lookup-message" class="text-center mt-4 text-lg font-medium"></div>
-            </div>
-
-            <!-- Área de Resultado (Oculta até a busca) -->
-            <div id="certificate-details" class="mt-10 hidden">
-                
-                <!-- Status de Validação -->
-                <div class="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-center gap-3 mb-8">
-                    <div class="bg-green-500 rounded-full p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                        </svg>
-                    </div>
-                    <div class="text-green-900 font-bold text-lg">
-                        CÓDIGO <span id="cert-codigo-display"></span> - Autenticidade Validada
-                        <span class="block text-sm font-normal text-green-800">Esta é uma peça original Brindaria.</span>
-                    </div>
-                </div>
-
-                <!-- Ficha Técnica -->
-                <div class="grid grid-cols-1 gap-6">
-                    
-                    <!-- Detalhes Técnicos -->
-                    <div class="border-l-4 border-gray-300 pl-4 py-1 space-y-2">
-                        <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2">Ficha Técnica da Peça</h3>
-                        
-                        <p class="text-gray-800">
-                            <strong class="font-semibold">Modelo:</strong> <span id="cert-modelo"></span>
-                            <br><span id="cert-colecao" class="text-sm text-gray-500 italic"></span>
-                        </p>
-                        <p class="text-gray-800">
-                            <strong class="font-semibold">Material:</strong> <span id="cert-material"></span>
-                        </p>
-                        <p class="text-gray-800">
-                            <strong class="font-semibold">Acabamento:</strong> <span id="cert-acabamento"></span>
-                        </p>
-                        <p class="text-gray-800">
-                            <strong class="font-semibold">Data de Produção:</strong> <span id="cert-data"></span>
-                        </p>
-                    </div>
-
-                    <!-- Mensagem Personalizada -->
-                    <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-100 mt-4">
-                        <p id="cert-mensagem" class="text-lg text-indigo-900 leading-relaxed italic"></p>
-                    </div>
-
                 </div>
             </div>
         </section>
