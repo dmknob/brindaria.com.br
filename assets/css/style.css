@@ -1,0 +1,29 @@
+/* Importando a fonte Inter caso não esteja cacheada, mas o link no HTML é preferível para performance */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Estilo da Marca */
+.brand-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* Ajuste de imagens (crop) */
+.img-cropped-top {
+    object-position: center -112px;
+}
+
+@media (max-width: 768px) {
+    .img-cropped-top {
+        object-position: center -40px;
+    }
+}
+
+/* Utilitários de estado para o JS */
+.hidden {
+    display: none !important;
+}

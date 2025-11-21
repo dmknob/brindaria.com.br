@@ -1,0 +1,22 @@
+{
+  "pecas": [
+    {
+      "codigo": "#001",
+      "modelo": "São Luís Maria Grignion de Montfort",
+      "colecao": "(Coleção Guerreiros da Fé)",
+      "material": "Compósito Ecológico",
+      "acabamento": "visual Mármore, sobre pedestal preto com escrito em dourado.",
+      "data_producao": "Novembro de 2025",
+      "mensagem": "Peça gentilmente oferecida pelo Pedro Knob para o amigo Luís, no seu aniversário. Que a força e a sabedoria de São Luís, o 'Guerreiro da Virgem', sejam uma inspiração constante em sua jornada. Um presente de amizade e proteção."
+    },
+    {
+      "codigo": "SP-0012",
+      "modelo": "São Pedro",
+      "colecao": "(Coleção Clássica)",
+      "material": "PLA Premium",
+      "acabamento": "Pintura à mão detalhada.",
+      "data_producao": "10/06/2026",
+      "mensagem": "Peça confeccionada especialmente para San Pietro."
+    }
+  ]
+}
