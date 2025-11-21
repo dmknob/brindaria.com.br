@@ -6,20 +6,16 @@
     <title>Brindaria - Arte Sacra e Itens de Devoção Personalizados</title>
     
     <!-- OTIMIZAÇÃO DE PERFORMANCE -->
-    <!-- 1. Preconectar aos servidores externos para acelerar o download -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
-    <!-- 2. Carregar Fonte em Paralelo (remove o bloqueio do @import) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- 3. Tailwind via CDN (Ainda necessário na V1) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="icon" href="assets/images/ICONE.jpeg">
 
-    <!-- 4. CSS Crítico Inline (Elimina a requisição do style.css de 210ms) -->
+    <!-- CSS Crítico Inline -->
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .brand-wordmark { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.05em; }
@@ -45,12 +41,18 @@
 
         <!-- TOPO E MENU -->
         <header class="text-center">
-            <!-- Foto Principal -->
+            <!-- Foto Principal (LCP Otimizado) -->
             <div class="mb-8 rounded-lg overflow-hidden shadow-2xl max-h-[500px] w-full">
+                <!-- 
+                    Mudanças para LCP:
+                    1. Removido loading="lazy" (queremos carregar AGORA)
+                    2. Adicionado fetchpriority="high" (prioridade máxima no download)
+                    3. Adicionado decoding="sync" (opcional, mas ajuda a pintar mais rápido)
+                -->
                 <img src="assets/images/FOTO_FAMILIA.jpeg" 
                      alt="Foto da família da Brindaria" 
                      class="w-full h-full object-cover img-cropped-top"
-                     loading="lazy"> <!-- Lazy load mantido, ótimo para performance -->
+                     fetchpriority="high">
             </div>
 
             <!-- Marca -->
