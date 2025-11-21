@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lookupButton = document.getElementById('lookup-button');
     const serialInput = document.getElementById('serial-code');
     
-    // Se não houver botão de busca na página, não faz nada
+    // Se não houver botão de busca na página (ex: Home), não faz nada
     if (!lookupButton) return;
 
     lookupButton.addEventListener('click', handleLookup);
@@ -21,7 +21,10 @@ async function handleLookup() {
     const messageDiv = document.getElementById('lookup-message');
     const certDiv = document.getElementById('certificate-details');
     
-    // Elementos para preencher (Atualizado para a nova estrutura)
+    // Obtém o contexto da página atual (definido no <body>, ex: data-context="sao-luis")
+    const pageContext = document.body.getAttribute('data-context');
+
+    // Elementos para preencher com os dados
     const elCodigoDisplay = document.getElementById('cert-codigo-display');
     const elModelo = document.getElementById('cert-modelo');
     const elColecao = document.getElementById('cert-colecao');
@@ -30,43 +33,58 @@ async function handleLookup() {
     const elData = document.getElementById('cert-data');
     const elMensagem = document.getElementById('cert-mensagem');
 
-    // Limpa estados anteriores
+    // Reset visual (limpa estados anteriores)
     messageDiv.innerText = "Buscando...";
     messageDiv.className = "text-center mt-4 text-lg font-medium text-gray-500";
     certDiv.classList.add('hidden');
 
-    let codigoDigitado = serialInput.value.trim();
+    let inputRaw = serialInput.value.trim();
 
-    if (!codigoDigitado) {
+    if (!inputRaw) {
         mostrarErro("Por favor, digite o código gravado na peça.");
         return;
     }
 
-    // Adiciona o '#' se o usuário digitou apenas números e o banco espera '#'
-    // Ou normaliza para maiúsculo
-    // Vamos buscar de forma "fuzzy" (contém) ou exata, mas simplificando:
-    if (!codigoDigitado.startsWith('#') && !isNaN(codigoDigitado)) {
-        codigoDigitado = '#' + codigoDigitado; // Ex: transforma '001' em '#001'
-    }
-    
-    codigoDigitado = codigoDigitado.toUpperCase();
-
     try {
-        // 1. Busca o JSON
         const response = await fetch(DATA_URL);
         if (!response.ok) throw new Error("Erro ao carregar dados.");
-        
         const dados = await response.json();
         
-        // 2. Procura a peça no array
-        // Compara o código digitado com o código no JSON
-        const pecaEncontrada = dados.pecas.find(p => p.codigo.toUpperCase() === codigoDigitado);
+        // --- 1. FILTRO DE CONTEXTO ---
+        // Filtra apenas as peças que pertencem a esta página (se o contexto estiver definido)
+        let pecasCandidatas = dados.pecas;
+        if (pageContext) {
+            pecasCandidatas = pecasCandidatas.filter(p => p.context === pageContext);
+        }
+
+        // --- 2. LÓGICA "GAMBIARRA" INTELIGENTE (Fuzzy Match) ---
+        const normalizeCode = (code) => {
+            // Remove tudo que não é número
+            const numbersOnly = code.replace(/\D/g, ''); 
+            // Converte para inteiro para ignorar zeros a esquerda (ex: 001 vira 1)
+            return numbersOnly ? parseInt(numbersOnly, 10) : null;
+        };
+
+        const inputNormalized = normalizeCode(inputRaw);
+
+        // Busca no array filtrado
+        const pecaEncontrada = pecasCandidatas.find(p => {
+            const dbNormalized = normalizeCode(p.codigo);
+            
+            // Verifica correspondência numérica (ex: input "N001" == db "#001" pois ambos viram 1)
+            if (inputNormalized !== null && inputNormalized === dbNormalized) return true;
+            
+            // Verifica correspondência de texto exata (para casos alfanuméricos sem números)
+            if (p.codigo.toUpperCase() === inputRaw.toUpperCase()) return true;
+
+            return false;
+        });
 
         if (pecaEncontrada) {
-            // SUCESSO
-            messageDiv.innerText = ""; // Limpa mensagem de carregamento
+            // SUCESSO!
+            messageDiv.innerText = ""; // Limpa mensagem de "Buscando..."
             
-            // Preenche os dados
+            // Preenche os dados no HTML
             if(elCodigoDisplay) elCodigoDisplay.innerText = pecaEncontrada.codigo;
             if(elModelo) elModelo.innerText = pecaEncontrada.modelo;
             if(elColecao) elColecao.innerText = pecaEncontrada.colecao || "";
@@ -75,11 +93,15 @@ async function handleLookup() {
             if(elData) elData.innerText = pecaEncontrada.data_producao;
             if(elMensagem) elMensagem.innerText = pecaEncontrada.mensagem || "";
 
-            // Mostra o certificado
+            // Mostra a área do certificado
             certDiv.classList.remove('hidden');
             
+            // Scroll suave até o resultado para o usuário ver
+            certDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
         } else {
-            mostrarErro(`Código ${codigoDigitado} não encontrado. Verifique a grafia.`);
+            // FALHA!
+            mostrarErro(`Código digitado (${inputRaw}) não encontrado para esta imagem.`);
         }
 
     } catch (erro) {

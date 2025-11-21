@@ -1,29 +1,70 @@
-/* Importando a fonte Inter caso não esteja cacheada, mas o link no HTML é preferível para performance */
+/* -------------------------------------------------------------------------- */
+/* IMPORTAÇÃO DE FONTES                         */
+/* -------------------------------------------------------------------------- */
+/* Importa a fonte Inter do Google Fonts (pesos 400, 500, 600, 700) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* -------------------------------------------------------------------------- */
+/* CONFIGURAÇÃO BASE                            */
+/* -------------------------------------------------------------------------- */
 body {
     font-family: 'Inter', sans-serif;
+    /* Garante rolagem suave em toda a página */
+    scroll-behavior: smooth;
 }
 
-/* Estilo da Marca */
+/* -------------------------------------------------------------------------- */
+/* COMPONENTES DA MARCA                         */
+/* -------------------------------------------------------------------------- */
+/* Estilo específico para o logotipo em texto (brindaria.com.br) */
 .brand-wordmark {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    font-weight: 500; /* Medium weight para visual semi-expandido */
+    letter-spacing: 0.05em; /* Leve espaçamento entre letras */
 }
 
-/* Ajuste de imagens (crop) */
+/* -------------------------------------------------------------------------- */
+/* UTILITÁRIOS DE IMAGEM                        */
+/* -------------------------------------------------------------------------- */
+/* Classe para cortar o topo de imagens verticais (como a foto da família),
+   centralizando o foco nos rostos e removendo o espaço vazio superior.
+*/
 .img-cropped-top {
     object-position: center -112px;
 }
 
+/* Ajuste responsivo para telas menores (celulares/tablets) */
 @media (max-width: 768px) {
     .img-cropped-top {
-        object-position: center -40px;
+        object-position: center -40px; /* Corte menor em telas pequenas */
     }
 }
 
-/* Utilitários de estado para o JS */
+/* -------------------------------------------------------------------------- */
+/* UTILITÁRIOS DE ESTADO (JS)                   */
+/* -------------------------------------------------------------------------- */
+/* Usado pelo JavaScript para ocultar/mostrar elementos (como o resultado da busca).
+   O !important garante que esta regra sobreponha o 'display: flex/block' do Tailwind.
+*/
 .hidden {
     display: none !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ANIMAÇÕES                                    */
+/* -------------------------------------------------------------------------- */
+/* Animação suave de entrada para o certificado de autenticidade */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); /* Começa levemente abaixo */
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); /* Termina na posição original */
+    }
 }
