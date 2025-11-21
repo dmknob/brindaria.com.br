@@ -5,14 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anjo da Guarda - Brindaria</title>
     
-    <!-- Tailwind CSS -->
+    <!-- OTIMIZAÇÃO DE PERFORMANCE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- CSS Global -->
-    <link rel="stylesheet" href="/assets/css/style.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/images/ICONE.png">
+    <link rel="icon" href="/assets/images/ICONE.jpeg">
+
+    <!-- CSS Crítico Inline -->
+    <style>
+        /* Configuração Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Estilo da Marca */
+        .brand-wordmark {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* Utilitários */
+        .hidden { display: none !important; }
+
+        /* Animações */
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <!-- data-context define que a busca nesta página é específica para o Anjo -->
 <body class="bg-gray-50 text-gray-800 antialiased" data-context="anjo-da-guarda">
@@ -147,7 +174,7 @@
                     <strong>Principais locais de devoção:</strong> Embora não tenham um grande santuário físico único (pois estão em toda parte e ao lado de cada pessoa), a devoção aos Santos Anjos é central na tradição católica e ortodoxa mundial, sendo celebrada em toda a Igreja Universal.
                 </div>
 
-                <!-- Oração (VERSÃO EXTENDIDA) -->
+                <!-- Oração (Versão Estendida) -->
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Oração ao Santo Anjo</h2>
                     <div class="relative p-8 md:p-10 bg-indigo-50 rounded-2xl text-center shadow-sm">

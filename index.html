@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brindaria - Arte Sacra e Itens de Devoção Personalizados</title>
+    
+    <!-- OTIMIZAÇÃO DE PERFORMANCE -->
+    <!-- 1. Preconectar aos servidores externos para acelerar o download -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
+    <!-- 2. Carregar Fonte em Paralelo (remove o bloqueio do @import) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 3. Tailwind via CDN (Ainda necessário na V1) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" href="assets/images/ICONE.png">
+    
+    <link rel="icon" href="assets/images/ICONE.jpeg">
+
+    <!-- 4. CSS Crítico Inline (Elimina a requisição do style.css de 210ms) -->
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .brand-wordmark { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.05em; }
+        
+        /* Ajuste de imagens */
+        .img-cropped-top { object-position: center -112px; }
+        @media (max-width: 768px) { .img-cropped-top { object-position: center -40px; } }
+        
+        /* Utilitários */
+        .hidden { display: none !important; }
+        
+        /* Animações */
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
@@ -19,7 +50,7 @@
                 <img src="assets/images/FOTO_FAMILIA.jpeg" 
                      alt="Foto da família da Brindaria" 
                      class="w-full h-full object-cover img-cropped-top"
-                     loading="lazy">
+                     loading="lazy"> <!-- Lazy load mantido, ótimo para performance -->
             </div>
 
             <!-- Marca -->
